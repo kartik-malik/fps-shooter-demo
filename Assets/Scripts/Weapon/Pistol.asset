@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3850aae91ec89f241ab3f0268f9fd62c, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
+  DamagePoints: 40
   HitFx: {fileID: 7938674382967588408, guid: 47b961fcb423e0a4490fa703481f60ca, type: 3}
   FireRate: 0.5
+  IsAutomatic: 0
+  ZoomAllowed: 0
+  zoomFOV: 10
+  ZoomRotationSpeed: 0.3
+  weaponPrefab: {fileID: 4264901425396254630, guid: 236bdfb1581ddc84ca01c5111dfe0c16, type: 3}
+  Name: Pistol
+  LoadedBulletCount: 6
+  MaxBulletCapacity: 12

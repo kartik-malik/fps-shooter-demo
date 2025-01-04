@@ -1,13 +1,21 @@
 using StarterAssets;
 using UnityEngine;
 
+using Cinemachine;
+
 public class Weapon : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] ParticleSystem muzzleFx;
 
+    [SerializeField] Vector3 impulseVector;
+
+    CinemachineImpulseSource cinemachineImpulseSource;
+
     void Start()
     {
+
+        cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
 
@@ -16,6 +24,8 @@ public class Weapon : MonoBehaviour
         muzzleFx.Play();
 
         RaycastHit rayHit;
+
+        cinemachineImpulseSource.GenerateImpulseWithVelocity(impulseVector);
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rayHit, 100f))
         {
@@ -26,7 +36,7 @@ public class Weapon : MonoBehaviour
 
     private void HitEnemy(RaycastHit rayHit, WeaponSO weaponSO)
     {
-        EnemyHealth enemyHealth = rayHit.collider.GetComponent<EnemyHealth>();
+        EnemyHealth enemyHealth = rayHit.collider.GetComponentInParent<EnemyHealth>();
 
         Instantiate(weaponSO.HitFx, rayHit.point, Quaternion.identity);
 

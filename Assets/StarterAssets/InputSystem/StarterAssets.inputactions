@@ -47,6 +47,15 @@
                     "id": "7f84dbb0-91f6-455f-953d-f46a8d401323",
                     "expectedControlType": "",
                     "processors": "",
+                    "interactions": "Press(pressPoint=0.01,behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Button",
+                    "id": "9a374a29-9356-4d47-8c6e-911b34bb0a88",
+                    "expectedControlType": "",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 }
@@ -236,6 +245,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c095f9e0-21df-4070-99b8-5607a64f84d5",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
