@@ -5,97 +5,52 @@ public class Turret : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    [SerializeField] GameObject playerGameObject;
-    [SerializeField] GameObject turretHead;
+    [SerializeField] Transform playerCameraRootObj;
+    [SerializeField] Transform turretHead;
 
-
-    Vector3 alreadyPlayerTrackedPosition;
-
-    bool noCoRoutineInProgress = true;
-
-    bool playerInRange = false;
-
-    Coroutine trackingCoRoutine;
-
+    [SerializeField] Transform projectileSpawnTransform;
+    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] float fireRate = 3;
 
     void Start()
     {
-
+        StartCoroutine(SpawnProjectileRoutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"Distance ${Vector3.Distance(alreadyPlayerTrackedPosition, playerGameObject.transform.position) > 0.0001f} ${noCoRoutineInProgress}");
-        if (Vector3.Distance(alreadyPlayerTrackedPosition, playerGameObject.transform.position) > 0.0001f && playerInRange && noCoRoutineInProgress == true)
-        {
-            TriggerInitRotation();
-        }
+        turretHead.LookAt(playerCameraRootObj);
     }
 
-    void TriggerInitRotation()
+    IEnumerator SpawnProjectileRoutine()
     {
-        if (trackingCoRoutine != null)
+        while (true)
         {
-            StopCoroutine(trackingCoRoutine);
-
-
+            yield return new WaitForSeconds(fireRate);
+            GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnTransform.position, Quaternion.identity);
+            newProjectile.transform.LookAt(playerCameraRootObj);
+            newProjectile.GetComponent<Projectile>().Init(20);
         }
-        noCoRoutineInProgress = false;
-        Vector3 targetDirection = playerGameObject.transform.position - turretHead.transform.position;
-
-        Quaternion rotation = Quaternion.LookRotation(targetDirection.normalized);
-        trackingCoRoutine = StartCoroutine(TurretRotateRoutine(rotation, playerGameObject.transform.position));
-
     }
 
-    IEnumerator TurretRotateRoutine(Quaternion rotation, Vector3 playerPosition)
-    {
-
-        float i = 0;
-
-        Quaternion startRotation = turretHead.transform.rotation;
-        while (i <= 50)
-        {
-            yield return new WaitForEndOfFrame();
-
-            turretHead.transform.rotation = Quaternion.Slerp(startRotation, rotation, i / 50);
-            i++;
-        }
 
 
-        alreadyPlayerTrackedPosition = playerPosition;
-        noCoRoutineInProgress = true;
-
-        yield return null;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.CompareTag("Player"))
         {
-            playerInRange = true;
-            TriggerInitRotation();
 
         }
 
-    }
-
-    void HandleTurretRotation()
-    {
-
-        if (noCoRoutineInProgress)
-        {
-            turretHead.transform.LookAt(playerGameObject.transform);
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            playerInRange = false;
         }
     }
 }

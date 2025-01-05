@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,12 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Sprite shieldBarSprite;
 
     [SerializeField] Transform healthBarGridContainer;
+    [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject crossHair;
+
+    [SerializeField] StarterAssetsInputs starterAssetsInputs;
+
+
 
 
     int currentHealth;
@@ -31,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
 
+        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
 
         InitializeHealthBar(currentHealth);
     }
@@ -44,16 +52,16 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
 
-        currentHealth -= amount;
+        currentHealth = Mathf.Max(currentHealth - amount, 0);
 
         UpdateHealthBar(currentHealth);
 
-        Debug.Log($"Player Health {currentHealth}");
+        // Debug.Log($"Player Health {currentHealth}");
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
 
             gameOverCamera.SetActive(true);
+            Invoke("OnGameOver", 1f);
         }
     }
 
@@ -87,9 +95,18 @@ public class PlayerHealth : MonoBehaviour
         {
             if (barImages[i] != null)
             {
-                Debug.Log("Disabling  image");
+                // Debug.Log($"Disabling  image ${i}");
                 barImages[i].enabled = false;
             }
         }
+    }
+
+    public void OnGameOver()
+    {
+        crossHair.SetActive(false);
+        gameOverScreen.SetActive(true);
+        starterAssetsInputs.SetCursorState(false);
+        Destroy(gameObject);
+
     }
 }
