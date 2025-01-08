@@ -23,3 +23,4 @@ MonoBehaviour:
   Name: MachineGun
   LoadedBulletCount: 30
   MaxBulletCapacity: 60
+  audioClip: {fileID: 8300000, guid: 3784a08c4ee15c54e8c544544aa75c3d, type: 3}

@@ -6,10 +6,17 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int health = 100;
     int currentHealth;
 
+    [SerializeField] EnemySO enemySO;
+
     [SerializeField] GameObject endVfx;
+
+    EnemyManager enemyManager;
     void Start()
     {
         currentHealth = health;
+        enemyManager = FindFirstObjectByType<EnemyManager>();
+        Debug.Log(enemyManager);
+        enemyManager?.ChangeEnemyCount(1, enemySO);
     }
 
     // Update is called once per frame
@@ -26,19 +33,16 @@ public class EnemyHealth : MonoBehaviour
         {
 
             Instantiate(endVfx, transform.position, Quaternion.identity);
-            OnHealthOver();
+            SelfDestruct();
         }
     }
 
-    public void OnHealthOver()
-    {
-        Destroy(gameObject);
-    }
+
 
     public void SelfDestruct()
     {
         Instantiate(endVfx, transform.position, Quaternion.identity);
-        OnHealthOver();
+        enemyManager?.ChangeEnemyCount(-1, enemySO);
         Destroy(gameObject);
 
     }

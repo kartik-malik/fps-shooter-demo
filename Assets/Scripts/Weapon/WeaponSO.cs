@@ -22,4 +22,5 @@ public class WeaponSO : ScriptableObject
 
     public int LoadedBulletCount = 6;
     public int MaxBulletCapacity = 12;
+    public AudioClip audioClip;
 }

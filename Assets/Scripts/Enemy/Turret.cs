@@ -53,4 +53,11 @@ public class Turret : MonoBehaviour
         {
         }
     }
+
+    void OnEndingAnimation()
+    {
+        Animator animator = GetComponent<Animator>();
+
+
+    }
 }

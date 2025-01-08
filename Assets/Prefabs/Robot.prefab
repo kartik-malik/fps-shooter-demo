@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  enemySO: {fileID: 11400000, guid: 4258723601ff4ea4c9fda3483ed844d7, type: 2}
   endVfx: {fileID: 5824388182682479265, guid: cd6c2d854a78e3e498dfaa7a54fe57db, type: 3}
 --- !u!136 &6092752782468824760
 CapsuleCollider:

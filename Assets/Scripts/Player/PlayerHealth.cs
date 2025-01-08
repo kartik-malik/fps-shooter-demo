@@ -1,12 +1,17 @@
 using System.Collections.Generic;
 using StarterAssets;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] int health = 10;
+    [SerializeField] int health = 100;
+
+    [SerializeField] int lessHealthEffect = 30;
     [SerializeField] GameObject gameOverCamera;
 
     [SerializeField] Transform healthBarsTransform;
@@ -21,6 +26,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject crossHair;
 
     [SerializeField] StarterAssetsInputs starterAssetsInputs;
+
+    [SerializeField] Volume globalVolume;
+
+    ColorAdjustments colorAdjustments;
+    ChannelMixer channelMixer;
 
 
 
@@ -41,6 +51,12 @@ public class PlayerHealth : MonoBehaviour
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
 
         InitializeHealthBar(currentHealth);
+
+        VolumeProfile volumeProfile = globalVolume.sharedProfile;
+
+        volumeProfile.TryGet<ChannelMixer>(out channelMixer);
+        volumeProfile.TryGet<ColorAdjustments>(out colorAdjustments);
+
     }
 
     // Update is called once per frame
@@ -55,6 +71,12 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth - amount, 0);
 
         UpdateHealthBar(currentHealth);
+
+
+        if (currentHealth <= lessHealthEffect)
+        {
+            OnLessHealth();
+        }
 
         // Debug.Log($"Player Health {currentHealth}");
         if (currentHealth <= 0)
@@ -107,6 +129,21 @@ public class PlayerHealth : MonoBehaviour
         gameOverScreen.SetActive(true);
         starterAssetsInputs.SetCursorState(false);
         Destroy(gameObject);
+
+    }
+
+    public void OnLessHealth()
+    {
+
+        colorAdjustments.postExposure.Override(-0.13f);
+        channelMixer.active = true;
+
+    }
+
+    void OnDestroy()
+    {
+        colorAdjustments.postExposure.Override(0.2f);
+        channelMixer.active = false;
 
     }
 }

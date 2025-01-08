@@ -9,7 +9,7 @@ public class SpawnGate : MonoBehaviour
     [SerializeField] PlayerHealth playerHealth;
     void Start()
     {
-        StartCoroutine(SpawnRoutine());
+        // StartCoroutine(SpawnRoutine());
 
     }
 

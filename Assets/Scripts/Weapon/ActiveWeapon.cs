@@ -19,7 +19,7 @@ public class ActiveWeapon : MonoBehaviour
 
     float cooldownTime = 0;
 
-    CinemachineVirtualCamera virtualCamera;
+    [SerializeField] CinemachineVirtualCamera virtualCamera;
 
     [SerializeField] GameObject zoomScopeImage;
 
@@ -45,7 +45,7 @@ public class ActiveWeapon : MonoBehaviour
         animator = GetComponent<Animator>();
 
         firstPersonController = GetComponentInParent<FirstPersonController>();
-        virtualCamera = FindFirstObjectByType<CinemachineVirtualCamera>();
+        // virtualCamera = FindFirstObjectByType<CinemachineVirtualCamera>();
 
         DEFAULT_FOV = virtualCamera.m_Lens.FieldOfView;
 

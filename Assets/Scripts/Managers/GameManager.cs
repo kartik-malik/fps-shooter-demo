@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void OnWin()
+    public void PlayerWon()
     {
         winText.SetActive(true);
     }
