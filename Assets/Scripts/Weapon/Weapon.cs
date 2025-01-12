@@ -39,6 +39,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    // ABSTRACTION
     private void HitEnemy(RaycastHit rayHit, WeaponSO weaponSO)
     {
         EnemyHealth enemyHealth = rayHit.collider.GetComponentInParent<EnemyHealth>();

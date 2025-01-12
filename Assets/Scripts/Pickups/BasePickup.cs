@@ -33,6 +33,7 @@ public abstract class BasePickup : MonoBehaviour
         Debug.Log(
             ammoWeaponSpawner
         );
+        // ENCAPSULATION
         ammoWeaponSpawner?.MarkSpawnPossible();
     }
 }

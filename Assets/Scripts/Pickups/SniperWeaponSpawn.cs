@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// INHERITANCE
 public class SniperWeaponSpawn : AmmoWeaponSpawner
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -10,6 +11,7 @@ public class SniperWeaponSpawn : AmmoWeaponSpawner
     {
 
     }
+    // OVERRIDE POLYMORPHISM
     protected override void GetAndSpawnPickup()
     {
         var objectToSpawn = SpawnItemsList[elementToSpawn];
