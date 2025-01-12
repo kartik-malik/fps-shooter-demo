@@ -6,6 +6,8 @@ public class Robot : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject target;
 
+    [SerializeField] Animator animator;
+
     EnemyHealth enemyHealth;
 
     NavMeshAgent agent;
@@ -28,7 +30,14 @@ public class Robot : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            enemyHealth.SelfDestruct();
+            animator.SetBool("Death", true);
+            Invoke("DestructRobot", 2f);
         }
+    }
+
+    void DestructRobot()
+    {
+        enemyHealth.SelfDestruct();
+
     }
 }

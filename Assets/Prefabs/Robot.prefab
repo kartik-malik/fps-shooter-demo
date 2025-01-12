@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 26304045851630205}
   - component: {fileID: 3634162214853910926}
   - component: {fileID: 6092752782468824760}
+  - component: {fileID: 1784282908873814496}
   m_Layer: 7
   m_Name: Robot
   m_TagString: Untagged
@@ -104,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  animator: {fileID: 1657389829382699462}
 --- !u!136 &26304045851630205
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -165,6 +167,28 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1784282908873814496
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6707276369989481876}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7088972257975507637
 PrefabInstance:
   m_ObjectHideFlags: 0

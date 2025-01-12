@@ -7,9 +7,10 @@ public class SpawnGate : MonoBehaviour
 
     [SerializeField] GameObject robotPrefab;
     [SerializeField] PlayerHealth playerHealth;
+    [SerializeField] int spawnInterval = 10;
     void Start()
     {
-        // StartCoroutine(SpawnRoutine());
+        StartCoroutine(SpawnRoutine());
 
     }
 
@@ -21,7 +22,7 @@ public class SpawnGate : MonoBehaviour
     {
         while (playerHealth.CurrentHealth > 0)
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(spawnInterval);
 
             Instantiate(robotPrefab, transform.position, Quaternion.identity);
         }

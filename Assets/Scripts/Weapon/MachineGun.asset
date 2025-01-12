@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3850aae91ec89f241ab3f0268f9fd62c, type: 3}
   m_Name: MachineGun
   m_EditorClassIdentifier: 
-  DamagePoints: 10
+  DamagePoints: 20
   HitFx: {fileID: 7938674382967588408, guid: 47b961fcb423e0a4490fa703481f60ca, type: 3}
   FireRate: 0.1
   IsAutomatic: 1
@@ -21,6 +21,6 @@ MonoBehaviour:
   ZoomRotationSpeed: 0.3
   weaponPrefab: {fileID: 8895039537886249141, guid: cbcf020ad1facb2438c62c5e5fd088ac, type: 3}
   Name: MachineGun
-  LoadedBulletCount: 30
+  LoadedBulletCount: 50
   MaxBulletCapacity: 60
   audioClip: {fileID: 8300000, guid: 3784a08c4ee15c54e8c544544aa75c3d, type: 3}

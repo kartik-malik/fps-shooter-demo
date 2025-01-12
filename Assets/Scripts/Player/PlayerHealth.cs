@@ -24,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Transform healthBarGridContainer;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject crossHair;
+    [SerializeField] GameObject vignetteZoom;
+
 
     [SerializeField] StarterAssetsInputs starterAssetsInputs;
 
@@ -128,6 +130,7 @@ public class PlayerHealth : MonoBehaviour
         crossHair.SetActive(false);
         gameOverScreen.SetActive(true);
         starterAssetsInputs.SetCursorState(false);
+        vignetteZoom.SetActive(false);
         Destroy(gameObject);
 
     }

@@ -23,6 +23,16 @@ public abstract class BasePickup : MonoBehaviour
 
             OnPickup(other);
             Destroy(gameObject);
+            MakeSpawnPossibleInSpawnArea();
         }
+    }
+
+    void MakeSpawnPossibleInSpawnArea()
+    {
+        AmmoWeaponSpawner ammoWeaponSpawner = GetComponentInParent<AmmoWeaponSpawner>();
+        Debug.Log(
+            ammoWeaponSpawner
+        );
+        ammoWeaponSpawner?.MarkSpawnPossible();
     }
 }
